@@ -1,6 +1,6 @@
 FROM openjdk:8
-WORKDIR /usrapp/bin
+WORKDIR /noteapp/bin
 ENV PORT 90
-COPY /target/classes /usrapp/bin/classes
-COPY /target/dependency /usrapp/bin/dependency
+COPY /target/classes /noteapp/bin/classes
+COPY /target/dependency /noteapp/bin/dependency
 CMD ["java","-cp","./classes:./dependency/*","com.appserver.App"]
