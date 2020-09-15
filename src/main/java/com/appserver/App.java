@@ -13,8 +13,13 @@ import static spark.Spark.*;
  *
  */
 public class App {
+    /**
+     * Controlador de operaciones
+     * @param args
+     */
     public static void main( String[] args ) {
         Gson json = new Gson();
+        System.out.println(getPort());
         port(getPort());
         NotesService service = new NotesService();
         staticFileLocation("static");
@@ -35,7 +40,7 @@ public class App {
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
         }
-        return 80;
+        return 3032;
     }
 
 }

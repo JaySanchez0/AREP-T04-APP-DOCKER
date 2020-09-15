@@ -23,6 +23,9 @@ public class Data {
 
     private AtomicInteger inte = new AtomicInteger(0);
 
+    /**
+     * Inicia la base de datos
+     */
     public Data(){
         ConnectionString connString = new ConnectionString(
                 "mongodb://ec2-100-25-103-0.compute-1.amazonaws.com"
@@ -35,6 +38,10 @@ public class Data {
         database = mongoClient.getDatabase("NotesApp");
     }
 
+    /**
+     *
+     * @return obtiene todas las notas registradas en la base de datos
+     */
     public List<Note> getNotes(){
         MongoCollection<Document> collection = database.getCollection("Notes");
         ArrayList<Note> notes = new ArrayList<>();
@@ -49,6 +56,10 @@ public class Data {
         return notes;
     }
 
+    /**
+     * Inserta una nueva nota en la base de datos
+     * @param note Nota a añadir
+     */
     public void add(Note note){
         Document doc = new Document("_id",new ObjectId());
         doc.append("work_id",note.getWork());
