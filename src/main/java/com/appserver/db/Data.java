@@ -42,6 +42,7 @@ public class Data {
             Note note = new Note();
             note.setWork(doc.get("work_id").toString());
             note.setDescription(doc.get("description").toString());
+            note.setDate(doc.getDate("date"));
             notes.add(note);
         }
 
@@ -52,6 +53,7 @@ public class Data {
         Document doc = new Document("_id",new ObjectId());
         doc.append("work_id",note.getWork());
         doc.append("description",note.getDescription());
+        doc.append("date",note.getDate());
         MongoCollection<Document> collection = database.getCollection("Notes").withWriteConcern(WriteConcern.MAJORITY);
         collection.insertOne(doc);
         System.out.println(collection.count());

@@ -4,6 +4,8 @@ import com.appserver.model.Note;
 import com.appserver.services.NotesService;
 import com.google.gson.Gson;
 
+import java.util.Date;
+
 import static spark.Spark.*;
 
 /**
@@ -22,7 +24,9 @@ public class App {
             return json.toJson(service.getAll());
         });
         post("/note",(rq,rs)->{
-            service.add(json.fromJson(rq.body(), Note.class));
+            Note note = json.fromJson(rq.body(), Note.class);
+            note.setDate(new Date(System.currentTimeMillis()));
+            service.add(note);
             return  "";
         });
     }
